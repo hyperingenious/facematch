@@ -102,25 +102,28 @@ async function updateSupabaseRatings(id1, id1Score, id2, id2Score) {
 
 function insertThePage({ first, second }) {
   const truncateName = (name) => (name.length > 8 ? name.slice(0, 8) : name);
+  const firstName = first.name
+  const secondName = second.name
 
-  const firstName = truncateName(first.name);
-  const secondName = truncateName(second.name);
+
+  // const firstName = truncateName(first.name);
+  // const secondName = truncateName(second.name);
 
   document.querySelector("#app").innerHTML = `
     <div class="min-h-screen flex items-center justify-center">
       <div class="bg-white rounded-lg p-6 max-w-xl w-full text-center">
-        <h1 class="text-6xl font-semibold mb-6">Select your candidate</h1>
-        <div class="flex justify-around items-center " style="gap:1rem">
+        <h1 class="text-6xl font-semibold mb-6 hero-text">Select your candidate</h1>
+        <div class="flex justify-around items-center" style="justify-content: flex-start;gap:1rem">
           <div class="text-center mt-2" id="selectA">
             <img src="${first.profile_image}" id="faceA-img" class="circular-img">
-            <p id="faceA-rating" class="text-sm font-semibold">${firstName}</p>
+            <p id="faceA-rating" class="text-max text-sm font-semibold">${firstName}</p>
             <p id="faceA-rating" class="text-xs font-light">Score: ${first.face_rating}</p>
             <div class="score">${second.face_rating}pt.</div>
           </div>
           <p class="vs">vs</p>
           <div class="text-center mt-2" id="selectB">
            <img src="${second.profile_image}" id="faceB-img" class="circular-img">
-            <p id="faceA-rating" class="text-sm font-semibold">${secondName}</p>
+            <p id="faceA-rating" class="text-sm text-max font-semibold">${secondName}</p>
             <p id="faceA-rating" class="text-xs font-light">Score: ${second.face_rating}</p>
             <div class="score">${second.face_rating}pt.</div>
           </div>
