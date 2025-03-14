@@ -317,6 +317,9 @@ box-shadow:0 5px 15px rgba(0,0,0,.08),0 15px 35px -5px rgba(25,28,33,.2);
   /* border-radius: 50%; Makes the image circular */
   border: 2px solid #d1d5db; /* Border styling if needed */
 }
+.circular-img:hover{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 
 /*
  * Reference - https://codepen.io/supah/pen/WwrJpw
