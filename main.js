@@ -9,7 +9,7 @@ function main() {
 }
 
 setTimeout(() => {
- document.querySelector('#loading').style.display = 'none'
+  document.querySelector("#loading").style.display = "none";
 }, 1000);
 
 async function executeLeaderBoard(filteredLeaderBoard) {
@@ -17,34 +17,63 @@ async function executeLeaderBoard(filteredLeaderBoard) {
     .querySelector("#leaderboard-icon")
     .addEventListener("click", async () => {
       document.body.innerHTML = `
-    <div id="back" onClick="window.location.reload()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><circle cx="128" cy="128" r="96" opacity="0.2"/><circle cx="128" cy="128" r="96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="88" y1="128" x2="168" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><polyline points="120 96 88 128 120 160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg></div>
-    <div class="container">
-      <div class="leaderboard">
-        <div class="head">
-          <i class="fas fa-crown"></i>
-          <h1>Leaderboard</h1>
+        <div id="back" onClick="window.location.reload()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+            <rect width="256" height="256" fill="none"/>
+            <circle cx="128" cy="128" r="96" opacity="0.2"/>
+            <circle cx="128" cy="128" r="96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+            <line x1="88" y1="128" x2="168" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+            <polyline points="120 96 88 128 120 160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+          </svg>
         </div>
-        <div class="body" style="max-height:281px; overflow-y:scroll;">
-          <ol>
-            ${filteredLeaderBoard
-              .map(
-                (e) => `
-              <li>
-                <div>
-                  <img class="leaderboard-img" src="${e.profile_image}" />
-                  <mark>${e.name}</mark>
-                </div>
-                <small>${e.face_rating}</small>
-              </li>
-            `
-              )
-              .join("")}
-          </ol>
+        <div class="zoomed-overlay" style="display: none;">
+          <img src="" class="overlay-image" />
         </div>
-      </div>
-    </div>`;
+        <div class="container">
+          <div class="leaderboard">
+            <div class="head">
+              <i class="fas fa-crown"></i>
+              <h1>Leaderboard</h1>
+            </div>
+            <div class="body" style="max-height:581px; width:300px; overflow-y:scroll;">
+              <ol>
+                ${filteredLeaderBoard
+                  .map(
+                    (e) => `
+                  <li>
+                    <div>
+                      <img class="leaderboard-img" src="${e.profile_image}" />
+                      <mark>${e.name}</mark>
+                    </div>
+                    <small>${e.face_rating}</small>
+                  </li>
+                `
+                  )
+                  .join("")}
+              </ol>
+            </div>
+          </div>
+        </div>`;
+
+      // Select overlay elements
+      const overlay = document.querySelector(".zoomed-overlay");
+      const overlayImage = document.querySelector(".overlay-image");
+
+      // Add click event listeners to each leaderboard image
+      document.querySelectorAll(".leaderboard-img").forEach((img) => {
+        img.addEventListener("click", () => {
+          overlayImage.src = img.src; // Set overlay image source
+          overlay.style.display = "flex"; // Show overlay
+        });
+      });
+
+      // Hide overlay when clicking on it
+      overlay.addEventListener("click", () => {
+        overlay.style.display = "none";
+      });
     });
 }
+
 function calculateExpectedScore(ratingA, ratingB) {
   return 1 / (1 + Math.pow(10, (ratingB - ratingA) / 400));
 }
@@ -102,9 +131,8 @@ async function updateSupabaseRatings(id1, id1Score, id2, id2Score) {
 
 function insertThePage({ first, second }) {
   const truncateName = (name) => (name.length > 8 ? name.slice(0, 8) : name);
-  const firstName = first.name
-  const secondName = second.name
-
+  const firstName = first.name;
+  const secondName = second.name;
 
   // const firstName = truncateName(first.name);
   // const secondName = truncateName(second.name);

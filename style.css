@@ -12,97 +12,98 @@
 
 /* loader start */
 @keyframes blink {
-	 0% {
-		 opacity: 1;
-	}
-	 100% {
-		 opacity: 0.2;
-	}
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
 }
- @keyframes roll {
-	 0% {
-		 transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-	}
-	 50% {
-		 transform: rotateX(40deg) rotateY(180deg) rotateZ(320deg);
-	}
-	 100% {
-		 transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-	}
+@keyframes roll {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  50% {
+    transform: rotateX(40deg) rotateY(180deg) rotateZ(320deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+  }
 }
- #loading {
-	 position: fixed;
-	 top: 0;
-	 left: 0;
-	 z-index: 9999;
-	 width: 100vw;
-	 height: 100vh;
-	 perspective: 500;
-	 display: flex;
-	 justify-content: center;
-	 align-items: center;
-	 flex-direction: column;
-	 background: rgb(255, 255, 255);
-	 font-family: "Avenir Next", "Avenir Neue", "Avenir", Futura, "Century Gothic", "Helvetica Neue", Helvetica, Roboto, Arial, Sans-serif;
-	 font-weight: bold;
-	 text-align: center;
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  perspective: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgb(255, 255, 255);
+  font-family: "Avenir Next", "Avenir Neue", "Avenir", Futura, "Century Gothic",
+    "Helvetica Neue", Helvetica, Roboto, Arial, Sans-serif;
+  font-weight: bold;
+  text-align: center;
 }
- #loading p {
-	 margin: 80px auto 0;
-	 color: rgb(0, 0, 0);
-	 letter-spacing: 0.5em;
-	 text-indent: 0.5em;
-	 font-size: 18px;
-	 animation: blink 1s ease-in-out infinite alternate;
+#loading p {
+  margin: 80px auto 0;
+  color: rgb(0, 0, 0);
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  font-size: 18px;
+  animation: blink 1s ease-in-out infinite alternate;
 }
- #loading .dice {
-	 background: #000;
-	 width: 80px;
-	 height: 80px;
-	 position: relative;
-	 transform-style: preserve-3d;
-	 transition: 1s ease-out;
-	 animation: roll 2s linear infinite;
+#loading .dice {
+  background: #000;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: 1s ease-out;
+  animation: roll 2s linear infinite;
 }
- #loading .dice div {
-	 width: 100%;
-	 height: 100%;
-	 position: absolute;
-	 box-sizing: border-box;
-	 background: rgb(0, 0, 0);
-	 color: rgb(255, 255, 255);
-	 line-height: 80px;
-	 font-size: 40px;
+#loading .dice div {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  box-sizing: border-box;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  line-height: 80px;
+  font-size: 40px;
 }
- #loading .dice .front {
-	 top: 0;
-	 left: 0;
-	 transform: translateZ(40px);
+#loading .dice .front {
+  top: 0;
+  left: 0;
+  transform: translateZ(40px);
 }
- #loading .dice .back {
-	 top: 0;
-	 left: 0;
-	 transform: translateZ(-40px) rotateY(180deg);
+#loading .dice .back {
+  top: 0;
+  left: 0;
+  transform: translateZ(-40px) rotateY(180deg);
 }
- #loading .dice .left {
-	 top: 0;
-	 left: 40px;
-	 transform: rotateY(90deg);
+#loading .dice .left {
+  top: 0;
+  left: 40px;
+  transform: rotateY(90deg);
 }
- #loading .dice .right {
-	 top: 0;
-	 right: 40px;
-	 transform: rotateY(-90deg);
+#loading .dice .right {
+  top: 0;
+  right: 40px;
+  transform: rotateY(-90deg);
 }
- #loading .dice .top {
-	 top: 40px;
-	 left: 0;
-	 transform: rotateX(-90deg);
+#loading .dice .top {
+  top: 40px;
+  left: 0;
+  transform: rotateX(-90deg);
 }
- #loading .dice .bottom {
-	 bottom: 40px;
-	 left: 0;
-	 transform: rotateX(90deg);
+#loading .dice .bottom {
+  bottom: 40px;
+  left: 0;
+  transform: rotateX(90deg);
 }
 /* loader ended */
 .min-h-screen {
@@ -134,7 +135,7 @@
 }
 /* Minimalistic rounded button */
 .minimal-button {
-  margin-top:   -1rem;
+  margin-top: -1rem;
   display: inline-block;
   padding: 0.25rem 1rem; /* Adjust padding as needed */
   font-size: 1rem; /* Font size */
@@ -210,7 +211,8 @@
   font-weight: 400;
 }
 .score {
-box-shadow:0 5px 15px rgba(0,0,0,.08),0 15px 35px -5px rgba(25,28,33,.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08),
+    0 15px 35px -5px rgba(25, 28, 33, 0.2);
   position: relative;
   top: -200px;
   font-weight: 600;
@@ -310,15 +312,15 @@ box-shadow:0 5px 15px rgba(0,0,0,.08),0 15px 35px -5px rgba(25,28,33,.2);
   font-weight: 600;
 }
 
-.text-max{
-  max-width:150px; 
+.text-max {
+  max-width: 150px;
 }
 
-@media(max-width: 500px){
-  .hero-text{
-    font-size:1.5rem;
+@media (max-width: 500px) {
+  .hero-text {
+    font-size: 1.5rem;
   }
-}  
+}
 /* Circular image styles */
 .circular-img {
   width: calc(9rem - 9rem * 30 / 100);
@@ -327,7 +329,7 @@ box-shadow:0 5px 15px rgba(0,0,0,.08),0 15px 35px -5px rgba(25,28,33,.2);
   /* border-radius: 50%; Makes the image circular */
   border: 2px solid #d1d5db; /* Border styling if needed */
 }
-.circular-img:hover{
+.circular-img:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -408,11 +410,33 @@ a {
 .leaderboard-img {
   border-radius: 50%;
   margin-top: 3px;
-  width: 25px;
-  border: 3px solid rgba(255, 255, 255, 0.618);
-  height: 25px;
+  width: 50px;
+  cursor: pointer;
+  border: 7px solid rgba(255, 255, 255, 0.618);
+  height: 50px;
   object-fit: cover;
 }
+
+.zoomed-overlay {
+  
+  position: fixed; /* Ensures it stays on top even when scrolling */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensures it stays above all other elements */
+}
+
+.overlay-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
 .leaderboard li {
   justify-content: space-between;
   padding: 16px;
