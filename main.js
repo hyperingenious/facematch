@@ -112,7 +112,7 @@ function insertThePage({ first, second }) {
   document.querySelector("#app").innerHTML = `
     <div class="min-h-screen flex items-center justify-center">
       <div class="bg-white rounded-lg p-6 max-w-xl w-full text-center">
-        <h1 class="text-6xl font-semibold mb-6 hero-text">Select your candidate</h1>
+        <h1 class="text-6xl font-semibold mb-6 hero-text">Who is better 🤔?</h1>
         <div class="flex justify-around items-center" style="justify-content: flex-start;gap:1rem">
           <div class="text-center mt-2" id="selectA">
             <img src="${first.profile_image}" id="faceA-img" class="circular-img">
