@@ -8,11 +8,14 @@ function main() {
   getIds();
 }
 
+setTimeout(() => {
+ document.querySelector('#loading').style.display = 'none'
+}, 1000);
+
 async function executeLeaderBoard(filteredLeaderBoard) {
-   document
+  document
     .querySelector("#leaderboard-icon")
     .addEventListener("click", async () => {
-     
       document.body.innerHTML = `
     <div id="back" onClick="window.location.reload()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><circle cx="128" cy="128" r="96" opacity="0.2"/><circle cx="128" cy="128" r="96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="88" y1="128" x2="168" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><polyline points="120 96 88 128 120 160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg></div>
     <div class="container">
@@ -52,10 +55,10 @@ function updateRating(currentRating, expectedScore, actualScore) {
 
 async function getIds() {
   try {
-    const result = await databases.listDocuments(databaseID, collectionID,[
-    Query.orderDesc("face_rating"),
-    Query.limit(600),
-  ]);
+    const result = await databases.listDocuments(databaseID, collectionID, [
+      Query.orderDesc("face_rating"),
+      Query.limit(600),
+    ]);
 
     const { documents } = result;
     const refinedData = documents.map((user) => user.$id);
@@ -69,7 +72,7 @@ async function getIds() {
     const second = documents.find((user) => user.$id === randomSecond);
 
     insertThePage({ first, second });
-    executeLeaderBoard(documents)
+    executeLeaderBoard(documents);
   } catch (error) {
     console.error("Error fetching IDs:", error.message);
   }
@@ -104,24 +107,25 @@ function insertThePage({ first, second }) {
   const secondName = truncateName(second.name);
 
   document.querySelector("#app").innerHTML = `
-    <div class="bg-gray-100 min-h-screen flex items-center justify-center">
-      <div class="bg-white shadow-lg rounded-lg p-6 max-w-xl w-full text-center">
-        <h1 class="text-2xl font-bold mb-6">Select your candidate</h1>
-        <div class="flex justify-around items-center mb-6" style="gap:2rem">
-          <div class="text-center">
+    <div class="min-h-screen flex items-center justify-center">
+      <div class="bg-white rounded-lg p-6 max-w-xl w-full text-center">
+        <h1 class="text-6xl font-semibold mb-6">Select your candidate</h1>
+        <div class="flex justify-around items-center " style="gap:1rem">
+          <div class="text-center mt-2" id="selectA">
             <img src="${first.profile_image}" id="faceA-img" class="circular-img">
-            <p id="faceA-rating" class="mt-2 text-lg font-semibold">Score: ${first.face_rating}</p>
-            <button id="selectA" class="minimal-button">${firstName}</button>
+            <p id="faceA-rating" class="text-sm font-semibold">${firstName}</p>
+            <p id="faceA-rating" class="text-xs font-light">Score: ${first.face_rating}</p>
+            <div class="score">${second.face_rating}pt.</div>
           </div>
-          <p class="text-xl font-bold">VS</p>
-          <div class="text-center">
+          <p class="vs">vs</p>
+          <div class="text-center mt-2" id="selectB">
            <img src="${second.profile_image}" id="faceB-img" class="circular-img">
-            <p id="faceB-rating" class="mt-2 text-lg font-semibold">Score: ${second.face_rating}</p>
-            <button id="selectB" class="minimal-button">${secondName}</button>
+            <p id="faceA-rating" class="text-sm font-semibold">${secondName}</p>
+            <p id="faceA-rating" class="text-xs font-light">Score: ${second.face_rating}</p>
+            <div class="score">${second.face_rating}pt.</div>
           </div>
         </div>
         <button id="matchBtn" class="minimal-button">DRAW</button>
-        <p id="result" class="mt-6 text-xl font-semibold"></p>
       </div>
     </div>
   `;
